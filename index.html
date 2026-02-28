@@ -1,703 +1,466 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Adapaka Guna Sekhar — Data Analyst</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg: #080810;
+      --surface: #0f0f1a;
+      --card: #13131f;
+      --border: #1e1e30;
+      --coral: #ff6b6b;
+      --teal: #00d4c8;
+      --yellow: #ffd166;
+      --purple: #a855f7;
+      --text: #e8e8f5;
+      --muted: #6b6b8a;
+      --white: #ffffff;
+    }
 
-  <!-- 
-    - primary meta tags
-  -->
-  <title>Guna Sekhar - Data Analyst</title>
-  <meta name="title" content="Guna Sekhar - Data Analyst">
-  <meta name="description" content="This is a personal portfolio html template made by codewithsadee">
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; cursor: none; }
 
-  <!-- 
-    - favicon
-  -->
-  <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
+    /* CUSTOM CURSOR */
+    .cursor { position: fixed; width: 12px; height: 12px; background: var(--coral); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: width 0.3s, height 0.3s, background 0.3s; }
+    .cursor-ring { position: fixed; width: 36px; height: 36px; border: 1.5px solid var(--coral); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: width 0.3s, height 0.3s, border-color 0.3s; opacity: 0.6; }
+    .cursor.hover { width: 20px; height: 20px; background: var(--teal); }
+    .cursor-ring.hover { width: 50px; height: 50px; border-color: var(--teal); }
 
-  <!-- 
-    - google font link
-  -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+    /* NOISE OVERLAY */
+    body::after { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E"); pointer-events: none; z-index: 1; opacity: 0.5; }
 
-  <!-- 
-    - custom css link
-  -->
-  <link rel="stylesheet" href="./assets/css/style.css">
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1.4rem 5rem; background: rgba(8,8,16,0.8); backdrop-filter: blur(24px); border-bottom: 1px solid var(--border); }
+    .nav-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; color: var(--white); text-decoration: none; letter-spacing: 0.04em; }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.82rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; position: relative; }
+    .nav-links a:hover { color: var(--white); }
+    .nav-links a::after { content: ''; position: absolute; bottom: -3px; left: 0; width: 0; height: 1px; background: var(--coral); transition: width 0.3s; }
+    .nav-links a:hover::after { width: 100%; }
 
-  <!-- 
-    - preload images
-  -->
-  <link rel="preload" as="image" href="./assets/images/hero-banner.jpg">
+    /* HERO */
+    .hero { min-height: 100vh; display: flex; align-items: center; padding: 8rem 5rem 4rem; position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px); background-size: 60px 60px; pointer-events: none; }
+    .orb1 { position: absolute; width: 500px; height: 500px; border-radius: 50%; background: radial-gradient(circle, rgba(255,107,107,0.12) 0%, transparent 70%); top: -100px; right: -100px; pointer-events: none; animation: float 8s ease-in-out infinite; }
+    .orb2 { position: absolute; width: 400px; height: 400px; border-radius: 50%; background: radial-gradient(circle, rgba(0,212,200,0.08) 0%, transparent 70%); bottom: -50px; left: 20%; pointer-events: none; animation: float 10s ease-in-out infinite reverse; }
+    @keyframes float { 0%,100%{transform:translateY(0)}50%{transform:translateY(-30px)} }
 
+    .hero-content { position: relative; z-index: 2; max-width: 800px; }
+    .hero-greeting { display: inline-flex; align-items: center; gap: 0.6rem; color: var(--coral); font-size: 0.85rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1.5rem; }
+    .hero-greeting::before { content: ''; width: 30px; height: 1px; background: var(--coral); }
+    .hero h1 { font-family: 'Syne', sans-serif; font-size: clamp(3.5rem, 7vw, 7rem); font-weight: 800; line-height: 0.95; color: var(--white); margin-bottom: 2rem; letter-spacing: -0.02em; }
+    .hero h1 .line2 { color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,0.3); }
+    .hero h1 .line3 { color: var(--coral); }
+
+    .hero-sub { display: flex; align-items: center; gap: 2rem; margin-bottom: 3rem; flex-wrap: wrap; }
+    .hero-desc { color: var(--muted); font-size: 1rem; line-height: 1.8; max-width: 480px; }
+    .hero-divider { width: 1px; height: 60px; background: var(--border); }
+    .hero-tags { display: flex; flex-direction: column; gap: 0.5rem; }
+    .hero-tag { color: var(--muted); font-size: 0.8rem; font-weight: 500; display: flex; align-items: center; gap: 0.5rem; }
+    .hero-tag::before { content: ''; width: 6px; height: 6px; border-radius: 50%; }
+    .hero-tag:nth-child(1)::before { background: var(--coral); }
+    .hero-tag:nth-child(2)::before { background: var(--teal); }
+    .hero-tag:nth-child(3)::before { background: var(--yellow); }
+
+    .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 4rem; }
+    .btn-primary { background: var(--coral); color: white; padding: 0.9rem 2rem; border-radius: 0.4rem; text-decoration: none; font-weight: 600; font-size: 0.88rem; transition: all 0.3s; position: relative; overflow: hidden; }
+    .btn-primary::before { content: ''; position: absolute; inset: 0; background: rgba(255,255,255,0.1); transform: translateX(-100%); transition: transform 0.3s; }
+    .btn-primary:hover::before { transform: translateX(0); }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(255,107,107,0.4); }
+    .btn-secondary { background: transparent; color: var(--text); padding: 0.9rem 2rem; border-radius: 0.4rem; text-decoration: none; font-weight: 600; font-size: 0.88rem; border: 1px solid var(--border); transition: all 0.3s; }
+    .btn-secondary:hover { border-color: var(--teal); color: var(--teal); transform: translateY(-2px); }
+
+    .hero-stats { display: flex; gap: 3rem; }
+    .stat { border-left: 1px solid var(--border); padding-left: 1.5rem; }
+    .stat-num { font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; color: var(--white); line-height: 1; }
+    .stat-num span { color: var(--coral); }
+    .stat-label { color: var(--muted); font-size: 0.78rem; margin-top: 0.2rem; }
+
+    /* SECTIONS */
+    .section { padding: 7rem 5rem; max-width: 1300px; margin: 0 auto; position: relative; z-index: 2; }
+    .section-eyebrow { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+    .section-eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--coral); }
+    .section-eyebrow span { color: var(--coral); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; }
+    .section-title { font-family: 'Syne', sans-serif; font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 800; color: var(--white); margin-bottom: 3rem; line-height: 1.1; }
+    .full-divider { height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); }
+
+    /* SKILLS TABS */
+    .skills-tabs { display: flex; gap: 0.5rem; margin-bottom: 2rem; }
+    .tab-btn { padding: 0.6rem 1.4rem; border-radius: 2rem; font-size: 0.82rem; font-weight: 600; border: 1px solid var(--border); background: transparent; color: var(--muted); cursor: none; transition: all 0.2s; letter-spacing: 0.04em; }
+    .tab-btn.active { background: var(--coral); color: white; border-color: var(--coral); }
+    .tab-btn:hover:not(.active) { border-color: var(--muted); color: var(--text); }
+    .skills-panel { display: none; flex-wrap: wrap; gap: 0.8rem; }
+    .skills-panel.active { display: flex; }
+    .skill-pill { padding: 0.7rem 1.4rem; border-radius: 2rem; border: 1px solid var(--border); color: var(--text); font-size: 0.88rem; font-weight: 500; background: var(--card); transition: all 0.3s; position: relative; overflow: hidden; }
+    .skill-pill::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(255,107,107,0.1), rgba(0,212,200,0.1)); opacity: 0; transition: opacity 0.3s; }
+    .skill-pill:hover { border-color: var(--coral); color: var(--white); transform: translateY(-2px); }
+    .skill-pill:hover::before { opacity: 1; }
+
+    /* PROJECTS */
+    .projects-list { display: flex; flex-direction: column; }
+    .project-row { display: grid; grid-template-columns: 80px 1fr auto; gap: 2rem; align-items: center; padding: 2rem 0; border-bottom: 1px solid var(--border); cursor: none; transition: background 0.2s; position: relative; overflow: hidden; }
+    .project-row::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 0; transition: width 0.4s; }
+    .project-row:nth-child(1)::before { background: linear-gradient(90deg, rgba(255,107,107,0.05), transparent); }
+    .project-row:nth-child(2)::before { background: linear-gradient(90deg, rgba(0,212,200,0.05), transparent); }
+    .project-row:nth-child(3)::before { background: linear-gradient(90deg, rgba(168,85,247,0.05), transparent); }
+    .project-row:hover::before { width: 100%; }
+    .project-row:first-child { border-top: 1px solid var(--border); }
+    .project-row-num { font-family: 'Syne', sans-serif; font-size: 0.75rem; font-weight: 700; color: var(--muted); letter-spacing: 0.1em; position: relative; z-index: 1; }
+    .project-row-main { position: relative; z-index: 1; }
+    .project-row-title { font-family: 'Syne', sans-serif; font-size: 1.4rem; font-weight: 700; color: var(--white); margin-bottom: 0.5rem; transition: color 0.2s; }
+    .project-row:nth-child(1):hover .project-row-title { color: var(--coral); }
+    .project-row:nth-child(2):hover .project-row-title { color: var(--teal); }
+    .project-row:nth-child(3):hover .project-row-title { color: var(--purple); }
+    .project-row-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.6rem; }
+    .proj-tag { padding: 0.25rem 0.65rem; border-radius: 0.25rem; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.04em; border: 1px solid; }
+    .proj-tag.red { border-color: var(--coral); color: var(--coral); background: rgba(255,107,107,0.08); }
+    .proj-tag.teal { border-color: var(--teal); color: var(--teal); background: rgba(0,212,200,0.08); }
+    .proj-tag.purple { border-color: var(--purple); color: var(--purple); background: rgba(168,85,247,0.08); }
+    .project-row-desc { color: var(--muted); font-size: 0.85rem; line-height: 1.6; max-width: 600px; }
+    .project-row-right { display: flex; flex-direction: column; align-items: flex-end; gap: 0.8rem; position: relative; z-index: 1; }
+    .project-metric-badge { font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 800; color: var(--white); text-align: right; }
+    .project-metric-badge small { display: block; color: var(--muted); font-size: 0.72rem; font-weight: 400; font-family: 'Inter', sans-serif; }
+    .project-gh-link { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--coral); text-decoration: none; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.04em; transition: gap 0.2s; }
+    .project-row:nth-child(2) .project-gh-link { color: var(--teal); }
+    .project-row:nth-child(3) .project-gh-link { color: var(--purple); }
+    .project-gh-link:hover { gap: 0.7rem; }
+
+    /* CERTIFICATIONS ACCORDION */
+    .certs-list { display: flex; flex-direction: column; gap: 0.5rem; }
+    .cert-item { background: var(--card); border: 1px solid var(--border); border-radius: 0.6rem; overflow: hidden; transition: border-color 0.2s; }
+    .cert-item:hover { border-color: rgba(255,107,107,0.3); }
+    .cert-header { display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 1.6rem; cursor: none; }
+    .cert-header-left { display: flex; align-items: center; gap: 1rem; }
+    .cert-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--coral); flex-shrink: 0; }
+    .cert-title { color: var(--white); font-weight: 600; font-size: 0.92rem; }
+    .cert-issuer { color: var(--muted); font-size: 0.8rem; }
+    .cert-header-right { display: flex; align-items: center; gap: 1rem; }
+    .cert-date-badge { background: rgba(255,209,102,0.1); border: 1px solid rgba(255,209,102,0.2); color: var(--yellow); padding: 0.2rem 0.7rem; border-radius: 2rem; font-size: 0.75rem; font-weight: 600; }
+    .cert-arrow { color: var(--muted); font-size: 1rem; transition: transform 0.3s; }
+    .cert-item.open .cert-arrow { transform: rotate(45deg); color: var(--coral); }
+    .cert-body { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.3s; padding: 0 1.6rem; }
+    .cert-item.open .cert-body { max-height: 100px; padding: 0 1.6rem 1.2rem; }
+    .cert-link { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--teal); text-decoration: none; font-size: 0.82rem; font-weight: 600; transition: gap 0.2s; }
+    .cert-link:hover { gap: 0.7rem; }
+
+    /* EDUCATION */
+    .edu-cards { display: flex; flex-direction: column; gap: 1rem; }
+    .edu-card { background: var(--card); border: 1px solid var(--border); border-radius: 0.8rem; padding: 1.6rem 2rem; display: flex; justify-content: space-between; align-items: center; transition: border-color 0.3s, transform 0.2s; }
+    .edu-card:hover { border-color: rgba(0,212,200,0.3); transform: translateX(6px); }
+    .edu-left { display: flex; align-items: center; gap: 1rem; }
+    .edu-icon { font-size: 1.8rem; }
+    .edu-inst { font-family: 'Syne', sans-serif; font-weight: 700; color: var(--white); font-size: 0.95rem; }
+    .edu-deg { color: var(--muted); font-size: 0.82rem; margin-top: 0.2rem; }
+    .edu-right { text-align: right; }
+    .edu-grade { font-family: 'Syne', sans-serif; font-weight: 800; color: var(--teal); font-size: 1rem; }
+    .edu-date { color: var(--muted); font-size: 0.75rem; margin-top: 0.2rem; }
+
+    /* CONTACT */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    .contact-card { background: var(--card); border: 1px solid var(--border); border-radius: 1rem; padding: 2rem; text-decoration: none; transition: all 0.3s; display: flex; align-items: center; gap: 1.5rem; }
+    .contact-card:hover { border-color: var(--coral); transform: translateY(-4px); box-shadow: 0 12px 32px rgba(255,107,107,0.1); }
+    .contact-icon { font-size: 2rem; }
+    .contact-label { color: var(--muted); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.3rem; }
+    .contact-value { color: var(--white); font-weight: 600; font-size: 0.92rem; }
+
+    footer { text-align: center; padding: 2.5rem; color: var(--muted); font-size: 0.78rem; border-top: 1px solid var(--border); position: relative; z-index: 2; }
+
+    .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 900px) {
+      nav { padding: 1rem 2rem; }
+      .nav-links { display: none; }
+      .hero { padding: 7rem 2rem 4rem; }
+      .hero-stats { gap: 1.5rem; flex-wrap: wrap; }
+      .section { padding: 4rem 2rem; }
+      .project-row { grid-template-columns: 1fr; gap: 1rem; }
+      .project-row-num { display: none; }
+      .project-row-right { align-items: flex-start; }
+      .contact-grid { grid-template-columns: 1fr; }
+      body { cursor: auto; }
+      .cursor, .cursor-ring { display: none; }
+    }
+  </style>
 </head>
-
 <body>
 
-  <!-- 
-    - #PRELOADER
-  -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
 
-  <div class="preloader" data-preloader>
-    <div class="circle"></div>
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-name">Adapaka Guna Sekhar</a>
+  <ul class="nav-links">
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#certifications">Certifications</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="orb1"></div>
+  <div class="orb2"></div>
+  <div class="hero-content">
+    <div class="hero-greeting">Data Analyst & Data Scientist</div>
+    <h1>
+      <span class="line1">Adapaka</span><br/>
+      <span class="line2">Guna</span><br/>
+      <span class="line3">Sekhar</span>
+    </h1>
+    <div class="hero-sub">
+      <p class="hero-desc">Data Science graduate from Visakhapatnam, AP. I transform raw data into clear insights using Python, SQL, and Machine Learning.</p>
+      <div class="hero-divider"></div>
+      <div class="hero-tags">
+        <span class="hero-tag">Python & SQL</span>
+        <span class="hero-tag">Machine Learning</span>
+        <span class="hero-tag">Data Visualization</span>
+      </div>
+    </div>
+    <div class="hero-buttons">
+      <a href="mailto:adapakagunasekhar04@gmail.com" class="btn-primary">Get in Touch →</a>
+      <a href="https://github.com/AdapakaGunaSekhar004" target="_blank" class="btn-secondary">View GitHub</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">3<span>+</span></div><div class="stat-label">ML Projects</div></div>
+      <div class="stat"><div class="stat-num">541<span>K</span></div><div class="stat-label">Records Analyzed</div></div>
+      <div class="stat"><div class="stat-num">91<span>%</span></div><div class="stat-label">Best Accuracy</div></div>
+      <div class="stat"><div class="stat-num">6</div><div class="stat-label">Certifications</div></div>
+    </div>
   </div>
+</div>
 
+<div class="full-divider"></div>
 
+<!-- SKILLS -->
+<div class="section" id="skills">
+  <div class="section-eyebrow"><span>What I work with</span></div>
+  <h2 class="section-title">Skills & Tools</h2>
+  <div class="skills-tabs">
+    <button class="tab-btn active" onclick="showTab('technical',this)">Technical</button>
+    <button class="tab-btn" onclick="showTab('libraries',this)">Libraries</button>
+    <button class="tab-btn" onclick="showTab('soft',this)">Soft Skills</button>
+  </div>
+  <div class="skills-panel active" id="tab-technical">
+    <div class="skill-pill">Python</div><div class="skill-pill">SQL</div>
+    <div class="skill-pill">Power BI</div><div class="skill-pill">Microsoft Excel</div>
+    <div class="skill-pill">Machine Learning</div>
+  </div>
+  <div class="skills-panel" id="tab-libraries">
+    <div class="skill-pill">Pandas</div><div class="skill-pill">NumPy</div>
+    <div class="skill-pill">Seaborn</div><div class="skill-pill">Matplotlib</div>
+    <div class="skill-pill">Scikit-learn</div>
+  </div>
+  <div class="skills-panel" id="tab-soft">
+    <div class="skill-pill">Teamwork</div><div class="skill-pill">Communication</div>
+    <div class="skill-pill">Problem Solving</div><div class="skill-pill">Analytical Thinking</div>
+  </div>
+</div>
 
+<div class="full-divider"></div>
 
-
-  <!-- 
-    - #HEADER
-  -->
-
-  <header class="header" data-header>
-    <div class="container">
-
-      <a href="#" class="logo">
-        <img src="./assets/images/logo.svg" width="170" height="40" alt="Pfolio home">
-      </a>
-
-      <button class="nav-toggle-btn" data-nav-toggler data-nav-toggle-btn aria-label="Toggle menu">
-        <span class="line line-1"></span>
-        <span class="line line-2"></span>
-      </button>
-
-      <nav class="navbar" data-navbar>
-        <ul class="navbar-list">
-
-          <li>
-            <a href="#" class="navbar-link">Home</a>
-          </li>
-
-          <li>
-            <a href="#" class="navbar-link">Resume</a>
-          </li>
-
-          <li>
-            <a href="#" class="navbar-link">Services</a>
-          </li>
-
-          <li>
-            <a href="#" class="navbar-link">Portfolio</a>
-          </li>
-
-          <li>
-            <a href="#" class="navbar-link">Blog</a>
-          </li>
-
-          <li>
-            <a href="#" class="navbar-link">Contact</a>
-          </li>
-
-        </ul>
-      </nav>
-
-      <div class="overlay" data-nav-toggler data-overlay></div>
-
+<!-- PROJECTS -->
+<div class="section" id="projects">
+  <div class="section-eyebrow"><span>What I've built</span></div>
+  <h2 class="section-title">Projects</h2>
+  <div class="projects-list">
+    <div class="project-row fade-up">
+      <div class="project-row-num">01 —</div>
+      <div class="project-row-main">
+        <div class="project-row-tags"><span class="proj-tag red">Python</span><span class="proj-tag red">SQL</span><span class="proj-tag red">Pandas</span><span class="proj-tag red">Seaborn</span></div>
+        <div class="project-row-title">Online Retail Sales Analysis</div>
+        <div class="project-row-desc">Wrote 7 SQL queries on 541,909 retail transactions across 37 countries. Identified UK as 85% of revenue, USA with 38% return rate, and segmented 4,372 customers into value tiers.</div>
+      </div>
+      <div class="project-row-right">
+        <div class="project-metric-badge">541,909<small>transactions analyzed</small></div>
+        <a href="https://github.com/AdapakaGunaSekhar004/Online-Retail-Analysis" target="_blank" class="project-gh-link">GitHub →</a>
+      </div>
     </div>
-  </header>
-
-
-
-
-
-  <main>
-    <article>
-
-      <!-- 
-        - #HERO
-      -->
-
-      <section class="section hero" aria-label="home">
-        <div class="container">
-
-          <div class="hero-content">
-
-            <h1 class="h1 hero-title">Guna Sekhar</h1>
-
-            <p class="hero-subtitle">
-              Data Analyst
-            </p>
-
-            <div class="hero-banner">
-              <img src="./assets/images/hero-banner.jpg" width="800" height="800" alt="kane williams" class="w-100">
-            </div>
-
-            <p class="section-text">
-              Hi, I’m Guna Sekhar and I am a Data Analyst who dream making the world better place by
-              creating captivating projects.
-            </p>
-
-            <a href="https://drive.google.com/file/d/115v9ArihfTOn1SdPEs8W2ywy1nctqRwe/view?usp=sharing" class="btn has-before" download>
-              <span class="span">Download CV</span>
-              <ion-icon name="download-outline" aria-hidden="true"></ion-icon>
-            </a>
-            
-
-          </div>
-
-        </div>
-      </section>
-
-
-
-
-
-      <!-- 
-        - #SERVICE
-      -->
-
-      <section class="service" aria-labelledby="service-label">
-        <div class="container">
-
-          <div class="title-wrapper">
-
-            <div>
-              <p class="section-subtitle">
-                Services That I Provide
-              </p>
-
-              <h2 class="h2 section-title" id="service-label">Services</h2>
-            </div>
-
-            <p class="section-text">
-              As a skilled Data Analyst, I offer comprehensive data-driven solutions to help businesses make informed decisions. 
-              With expertise in data collection, cleaning, and visualization, I transform raw data into actionable insights. 
-              My services include:
-            </p>
-
-          </div>
-
-          <div class="slider" data-slider>
-
-            <ul class="slider-container service-list" data-slider-container>
-
-              <li class="slider-item" data-slider-item>
-                <div class="service-card">
-
-                  <div class="card-icon">
-                    <ion-icon name="desktop-outline"></ion-icon>
-                  </div>
-
-                  <h3 class="h3 card-title">Website Design</h3>
-
-                  <p class="card-text">
-                    I Can Design Intermediate level responsive and interactive websites. Can also work in high level projects.
-                  </p>
-
-                  <span class="text-lg card-number">01</span>
-
-                  <a href="#" class="layer-link" aria-label="More about my website design service"></a>
-
-                </div>
-              </li>
-
-              <li class="slider-item" data-slider-item>
-                <div class="service-card">
-
-                  <div class="card-icon">
-                    <ion-icon name="podium-outline"></ion-icon>
-                  </div>
-
-                  <h3 class="h3 card-title">Data Analysis</h3>
-
-                  <p class="card-text">
-                    I focus on delivering meaningful insights to improve efficiency, drive growth, and support data-informed decision-making.
-                  </p>
-
-                  <span class="text-lg card-number">02</span>
-
-                  <a href="#" class="layer-link" aria-label="More about my Data Analysis service"></a>
-
-                </div>
-              </li>
-
-              <li class="slider-item" data-slider-item>
-                <div class="service-card">
-
-                  <div class="card-icon">
-                    <ion-icon name="basket-outline"></ion-icon>
-                  </div>
-
-                  <h3 class="h3 card-title">eCommerce</h3>
-
-                  <p class="card-text">
-                    The website shows clear events that seem connected to each other, inviting a dynamic sense of navigation that feels seamless, with sections that provide views arranged in a structured manner.
-                  </p>
-
-                  <span class="text-lg card-number">03</span>
-
-                  <a href="#" class="layer-link" aria-label="More about my eCommerce service"></a>
-
-                </div>
-              </li>
-
-              <li class="slider-item" data-slider-item>
-                <div class="service-card">
-
-                  <div class="card-icon">
-                    <ion-icon name="color-filter-outline"></ion-icon>
-                  </div>
-
-                  <h3 class="h3 card-title"> Predictive Modeling</h3>
-
-                  <p class="card-text">
-                   Utilizing machine learning techniques to forecast trends and optimize business strategies.
-                  </p>
-
-                  <span class="text-lg card-number">04</span>
-
-                  <a href="#" class="layer-link" aria-label="More about my Predictive Modeling service"></a>
-
-                </div>
-              </li>
-
-            </ul>
-
-            <div class="slider-controls">
-              <button class="slider-control prev" data-slider-prev aria-label="Slide to previous item">
-                <div class="line"></div>
-                <div class="arrow"></div>
-              </button>
-
-              <button class="slider-control next" data-slider-next aria-label="Slide to next item">
-                <div class="line"></div>
-                <div class="arrow"></div>
-              </button>
-            </div>
-
-          </div>
-
-        </div>
-      </section>
-
-
-
-
-
-      <!-- 
-        - #SKILLS
-      -->
-
-      <section class="section skills" aria-label="our skills">
-        <div class="container">
-
-          <p class="section-subtitle">I Make The Future</p>
-
-          <h2 class="h2 section-title">I Develop & Create Digital Future.</h2>
-
-          <div class="skills-wrapper">
-
-            <div>
-              <p class="section-text">
-                From conceptualizing digital products to implementing automation and AI models. 
-                I’m committed to driving progress and enabling a smarter, more efficient digital world.
-              </p>
-
-              <p class="section-text">
-                As a visionary in technology and innovation, I focus on building the digital landscape of tomorrow. 
-                By combining cutting-edge tools, data-driven insights, and forward-thinking strategies, I deliver solutions that shape the future of industries. 
-                My work spans across software development, AI integration, and digital transformation, helping businesses and individuals navigate the evolving tech ecosystem.
-              </p>
-
-              <a href="#" class="btn has-before">adapakagunasekhar04@gmail.com</a>
-            </div>
-
-            <div>
-
-              <ul class="skills-list">
-
-                <li>
-                  <div class="progress-wrapper">
-                    <p class="progress-label">Web Design</p>
-
-                    <data class="progress-value" value="80">80%</data>
-                  </div>
-
-                  <div class="progress-bg">
-                    <div class="progress" style="width: 90%;"></div>
-                  </div>
-                </li>
-
-                <li>
-                  <div class="progress-wrapper">
-                    <p class="progress-label">Python</p>
-
-                    <data class="progress-value" value="80">80%</data>
-                  </div>
-
-                  <div class="progress-bg">
-                    <div class="progress" style="width: 80%;"></div>
-                  </div>
-                </li>
-
-                <li>
-                  <div class="progress-wrapper">
-                    <p class="progress-label">HTML</p>
-
-                    <data class="progress-value" value="95">95%</data>
-                  </div>
-
-                  <div class="progress-bg">
-                    <div class="progress" style="width: 95%;"></div>
-                  </div>
-                </li>
-
-                <li>
-                  <div class="progress-wrapper">
-                    <p class="progress-label">CSS</p>
-
-                    <data class="progress-value" value="85">85%</data>
-                  </div>
-
-                  <div class="progress-bg">
-                    <div class="progress" style="width: 85%;"></div>
-                  </div>
-                </li>
-
-              </ul>
-
-            </div>
-
-          </div>
-
-        </div>
-      </section>
-
-
-
-
-
-      <!-- 
-        - #PORTFOLIO
-      -->
-
-      <section class="portfolio" aria-labelledby="portfolio-label">
-
-        <div class="title-wrapper container">
-
-          <div>
-            <p class="section-subtitle" id="portfolio-label">Our Works</p>
-
-            <h2 class="h2 section-title">Portfolio</h2>
-          </div>
-
-          <p class="section-text">
-            My portfolio designs are tailored to showcase professionalism, creativity, and user-centric functionality. 
-            I focus on clean, intuitive layouts that highlight key skills and accomplishments, while ensuring a seamless navigation experience. 
-            Each design is customized to reflect individual or business identities, using modern visual aesthetics and responsive elements.
-          </p>
-
-        </div>
-
-        <div class="slider" data-slider>
-
-          <ul class="slider-container" data-slider-container>
-
-            <li class="slider-item">
-              <div class="portfolio-card img-holder" style="--width: 600; --height: 600;">
-
-                <img src="./assets/images/portfolio-1.jpg" width="600" height="600" loading="lazy" alt="portfolio"
-                  class="img-cover">
-
-                <div class="card-content">
-                  <h3 class="h3 card-title">Lab. 001</h3>
-
-                  <p class="card-text">Website Design</p>
-                </div>
-
-                <a href="#" class="layer-link"></a>
-
-              </div>
-            </li>
-
-            <li class="slider-item">
-              <div class="portfolio-card img-holder" style="--width: 600; --height: 600;">
-
-                <img src="./assets/images/portfolio-2.jpg" width="600" height="600" loading="lazy" alt="portfolio"
-                  class="img-cover">
-
-                <div class="card-content">
-                  <h3 class="h3 card-title">Aer Agency</h3>
-
-                  <p class="card-text">Website / Development</p>
-                </div>
-
-                <a href="#" class="layer-link"></a>
-
-              </div>
-            </li>
-
-            <li class="slider-item">
-              <div class="portfolio-card img-holder" style="--width: 600; --height: 600;">
-
-                <img src="./assets/images/portfolio-3.jpg" width="600" height="600" loading="lazy" alt="portfolio"
-                  class="img-cover">
-
-                <div class="card-content">
-                  <h3 class="h3 card-title">Joker Card</h3>
-
-                  <p class="card-text">UX Design / Web App</p>
-                </div>
-
-                <a href="#" class="layer-link"></a>
-
-              </div>
-            </li>
-
-            <li class="slider-item">
-              <div class="portfolio-card img-holder" style="--width: 600; --height: 600;">
-
-                <img src="./assets/images/portfolio-4.jpg" width="600" height="600" loading="lazy" alt="portfolio"
-                  class="img-cover">
-
-                <div class="card-content">
-                  <h3 class="h3 card-title">Peaky Blinders</h3>
-
-                  <p class="card-text">Website / UX Design</p>
-                </div>
-
-                <a href="#" class="layer-link"></a>
-
-              </div>
-            </li>
-
-            <li class="slider-item">
-              <div class="portfolio-card img-holder" style="--width: 600; --height: 600;">
-
-                <img src="./assets/images/portfolio-5.jpg" width="600" height="600" loading="lazy" alt="portfolio"
-                  class="img-cover">
-
-                <div class="card-content">
-                  <h3 class="h3 card-title">Design Zoom</h3>
-
-                  <p class="card-text">Branding / Design</p>
-                </div>
-
-                <a href="#" class="layer-link"></a>
-
-              </div>
-            </li>
-
-            <li class="slider-item">
-              <div class="portfolio-card img-holder" style="--width: 600; --height: 600;">
-
-                <img src="./assets/images/portfolio-6.jpg" width="600" height="600" loading="lazy" alt="portfolio"
-                  class="img-cover">
-
-                <div class="card-content">
-                  <h3 class="h3 card-title">Out Zone</h3>
-
-                  <p class="card-text">UX Design / Web App</p>
-                </div>
-
-                <a href="#" class="layer-link"></a>
-
-              </div>
-            </li>
-
-          </ul>
-
-          <div class="slider-controls">
-            <button class="slider-control prev" data-slider-prev aria-label="Slide to previous item">
-              <div class="line"></div>
-              <div class="arrow"></div>
-            </button>
-
-            <button class="slider-control next" data-slider-next aria-label="Slide to next item">
-              <div class="line"></div>
-              <div class="arrow"></div>
-            </button>
-          </div>
-
-        </div>
-
-      </section>
-
-
-
-
-
-      <!-- 
-        - #BLOG
-      -->
-
-      <section class="section blog" aria-labelledby="blog-label">
-        <div class="container">
-
-          <p class="section-subtitle" id="blog-label">About Me</p>
-
-          <h2 class="h2 section-title">Education</h2>
-
-          <ul class="blog-list">
-
-            <li>
-              <div class="blog-card">
-
-                <figure class="card-banner img-holder" style="--width: 700; --height: 470;">
-                  <img src="./assets/images/blog-1.jpg" width="700" height="470" loading="lazy"
-                    alt="Sathyabhama University - Chennai,India." class="img-cover">
-                </figure>
-
-                <div class="card-content">
-
-                  <time class="time" datetime="2021-07-24">
-                    <span class="span text-lg">24</span>
-                    July 2021
-                  </time>
-
-                  <div>
-                    <h3 class="h3 card-title">Sathyabhama University - Chennai,India</h3>
-
-                    <p class="card-text">
-                      Still Pursuing My graduation in B.Tech Computer Science Engineering with Specialization in Data Science.
-                      Year of completion of B.tech - 2025
-                    </p>
-
-                    <a href="#" class="btn has-before">
-                      <span class="span">Read more</span>
-
-                      <ion-icon name="arrow-forward"></ion-icon>
-                    </a>
-                  </div>
-
-                </div>
-
-              </div>
-            </li>
-
-            <li>
-              <div class="blog-card">
-
-                <figure class="card-banner img-holder" style="--width: 700; --height: 470;">
-                  <img src="./assets/images/blog-2.jpg" width="700" height="470" loading="lazy"
-                    alt="UX in Ecommerce – 5 things to avoid." class="img-cover">
-                </figure>
-
-                <div class="card-content">
-
-                  <time class="time" datetime="2024-06-27">
-                    <span class="span text-lg">27</span>
-                    June 2024
-                  </time>
-
-                  <div>
-                    <h3 class="h3 card-title">Data Analysis</h3>
-
-                    <p class="card-text">
-                      Data analysis involves examining, cleaning, transforming, and modeling data to extract meaningful insights that guide decision-making. 
-                      By utilizing statistical methods and analytical tools, data analysis helps identify trends, patterns, and correlations within large datasets.
-                    </p>
-
-                    <a href="#" class="btn has-before">
-                      <span class="span">Read more</span>
-
-                      <ion-icon name="arrow-forward"></ion-icon>
-                    </a>
-                  </div>
-
-                </div>
-
-              </div>
-            </li>
-
-          </ul>
-
-        </div>
-      </section>
-
-    </article>
-  </main>
-
-
-
-
-
-  <!-- 
-    - #FOOTER
-  -->
-
-  <footer class="footer">
-    <div class="container">
-
-      <ul class="footer-list">
-
-        <li>
-          <p class="h4 footer-list-title">Get in touch</p>
-        </li>
-
-        <li>
-          <a href="mailto:adapakagunasekhar04@gmail.com" class="footer-link">adapakagunasekhar04@gmail.com</a>
-        </li>
-
-      </ul>
-
-      <ul class="footer-list">
-
-        <li>
-          <p class="h4 footer-list-title">Locations</p>
-        </li>
-
-        <li>
-          <a href="#" class="footer-link">Chennai-India</a>
-        </li>
-
-      </ul>
-
-      <ul class="social-list">
-
-        <ul>
-          <li>
-            <a href="https://dribbble.com/your-profile" class="social-link" target="_blank">
-              <ion-icon name="logo-dribbble"></ion-icon>
-            </a>
-          </li>
-        
-          <li>
-            <a href="https://www.instagram.com/_.guna_sekhar._/" class="social-link" target="_blank">
-              <ion-icon name="logo-instagram"></ion-icon>
-            </a>
-          </li>
-        
-          <li>
-            <a href="https://skype.com/your-profile" class="social-link" target="_blank">
-              <ion-icon name="logo-skype"></ion-icon>
-            </a>
-          </li>
-        
-          <li>
-            <a href="https://www.linkedin.com/in/a-guna-sekhar-6903ab23b/" class="social-link" target="_blank">
-              <ion-icon name="logo-linkedin"></ion-icon>
-            </a>
-          </li>
-        </ul>
-        
-
-      </ul>
-
+    <div class="project-row fade-up">
+      <div class="project-row-num">02 —</div>
+      <div class="project-row-main">
+        <div class="project-row-tags"><span class="proj-tag teal">Python</span><span class="proj-tag teal">Scikit-learn</span><span class="proj-tag teal">Seaborn</span><span class="proj-tag teal">NumPy</span></div>
+        <div class="project-row-title">Liver Disease Prediction</div>
+        <div class="project-row-desc">Cleaned and analyzed 583 patient records using EDA — heatmaps, box plots, and distribution charts. Built a Random Forest classifier for early liver disease detection.</div>
+      </div>
+      <div class="project-row-right">
+        <div class="project-metric-badge">91.56%<small>model accuracy</small></div>
+        <a href="https://github.com/AdapakaGunaSekhar004/Liver-Disease-Prediction" target="_blank" class="project-gh-link">GitHub →</a>
+      </div>
     </div>
-  </footer>
+    <div class="project-row fade-up">
+      <div class="project-row-num">03 —</div>
+      <div class="project-row-main">
+        <div class="project-row-tags"><span class="proj-tag purple">Python</span><span class="proj-tag purple">Scikit-learn</span><span class="proj-tag purple">Pandas</span><span class="proj-tag purple">Matplotlib</span></div>
+        <div class="project-row-title">Employee Attrition Prediction</div>
+        <div class="project-row-desc">Analyzed IBM HR dataset of 1,470 employee records to identify top attrition drivers. Built a Logistic Regression model identifying top 20% high-risk employee segments.</div>
+      </div>
+      <div class="project-row-right">
+        <div class="project-metric-badge">86% / 0.89<small>accuracy / precision</small></div>
+        <a href="https://github.com/AdapakaGunaSekhar004/Employee-Attrition-Prediction" target="_blank" class="project-gh-link">GitHub →</a>
+      </div>
+    </div>
+  </div>
+</div>
 
+<div class="full-divider"></div>
 
+<!-- CERTIFICATIONS -->
+<div class="section" id="certifications">
+  <div class="section-eyebrow"><span>What I've earned</span></div>
+  <h2 class="section-title">Certifications</h2>
+  <div class="certs-list">
+    <div class="cert-item">
+      <div class="cert-header" onclick="toggleCert(this)">
+        <div class="cert-header-left"><div class="cert-dot"></div><div><div class="cert-title">Statistics 101</div><div class="cert-issuer">IBM · CognitiveClass</div></div></div>
+        <div class="cert-header-right"><span class="cert-date-badge">Dec 2024</span><span class="cert-arrow">+</span></div>
+      </div>
+      <div class="cert-body"><a href="https://courses.cognitiveclass.ai/certificates/b587f2595fc74a9a891f885583da1167" target="_blank" class="cert-link">View Certificate →</a></div>
+    </div>
+    <div class="cert-item">
+      <div class="cert-header" onclick="toggleCert(this)">
+        <div class="cert-header-left"><div class="cert-dot"></div><div><div class="cert-title">SQL and Relational Databases 101</div><div class="cert-issuer">IBM · CognitiveClass</div></div></div>
+        <div class="cert-header-right"><span class="cert-date-badge">Dec 2024</span><span class="cert-arrow">+</span></div>
+      </div>
+      <div class="cert-body"><a href="https://courses.cognitiveclass.ai/certificates/08d27cd9e29148a09874227890de102c" target="_blank" class="cert-link">View Certificate →</a></div>
+    </div>
+    <div class="cert-item">
+      <div class="cert-header" onclick="toggleCert(this)">
+        <div class="cert-header-left"><div class="cert-dot"></div><div><div class="cert-title">Data Visualisation: Empowering Business</div><div class="cert-issuer">Forage</div></div></div>
+        <div class="cert-header-right"><span class="cert-date-badge">Dec 2024</span><span class="cert-arrow">+</span></div>
+      </div>
+      <div class="cert-body"><a href="https://www.theforage.com/completion-certificates/ifobHAoMjQs9s6bKS/MyXvBcppsW2FkNYCX_ifobHAoMjQs9s6bKS_4iqY6aBcKRhuPzJ3Y_1735539010833_completion_certificate.pdf" target="_blank" class="cert-link">View Certificate →</a></div>
+    </div>
+    <div class="cert-item">
+      <div class="cert-header" onclick="toggleCert(this)">
+        <div class="cert-header-left"><div class="cert-dot"></div><div><div class="cert-title">Data Analytics & Visualization Job Simulation</div><div class="cert-issuer">Forage</div></div></div>
+        <div class="cert-header-right"><span class="cert-date-badge">July 2024</span><span class="cert-arrow">+</span></div>
+      </div>
+      <div class="cert-body"><a href="https://forage-uploads-prod.s3.amazonaws.com/completion-certificates/T6kdcdKSTfg2aotxT/hzmoNKtzvAzXsEqx8_T6kdcdKSTfg2aotxT_4iqY6aBcKRhuPzJ3Y_1734094500704_completion_certificate.pdf" target="_blank" class="cert-link">View Certificate →</a></div>
+    </div>
+    <div class="cert-item">
+      <div class="cert-header" onclick="toggleCert(this)">
+        <div class="cert-header-left"><div class="cert-dot"></div><div><div class="cert-title">Oracle Cloud Infrastructure 2023 Certified</div><div class="cert-issuer">Oracle</div></div></div>
+        <div class="cert-header-right"><span class="cert-date-badge">March 2024</span><span class="cert-arrow">+</span></div>
+      </div>
+      <div class="cert-body"><a href="https://drive.google.com/file/d/1lJaE-WhwjyLo4bg-VjW6QLAql8SGiCjk/view?usp=sharing" target="_blank" class="cert-link">View Certificate →</a></div>
+    </div>
+    <div class="cert-item">
+      <div class="cert-header" onclick="toggleCert(this)">
+        <div class="cert-header-left"><div class="cert-dot"></div><div><div class="cert-title">Digital 101 Journey</div><div class="cert-issuer">Nasscom</div></div></div>
+        <div class="cert-header-right"><span class="cert-date-badge">Jan 2024</span><span class="cert-arrow">+</span></div>
+      </div>
+      <div class="cert-body"><a href="https://drive.google.com/file/d/1hZBRGXeGyPfxT5PEDawQMznRnoJasCPd/view?usp=sharing" target="_blank" class="cert-link">View Certificate →</a></div>
+    </div>
+  </div>
+</div>
 
+<div class="full-divider"></div>
 
+<!-- EDUCATION -->
+<div class="section" id="education">
+  <div class="section-eyebrow"><span>Academic Background</span></div>
+  <h2 class="section-title">Education</h2>
+  <div class="edu-cards">
+    <div class="edu-card fade-up">
+      <div class="edu-left"><div class="edu-icon">🎓</div><div><div class="edu-inst">Sathyabama University, Chennai</div><div class="edu-deg">B.E. Computer Science & Engineering (Data Science)</div></div></div>
+      <div class="edu-right"><div class="edu-grade">GPA: 7.80/10</div><div class="edu-date">Sept 2021 – June 2025</div></div>
+    </div>
+    <div class="edu-card fade-up">
+      <div class="edu-left"><div class="edu-icon">📚</div><div><div class="edu-inst">Narayana Junior College, Visakhapatnam</div><div class="edu-deg">Higher Secondary Education (MPC)</div></div></div>
+      <div class="edu-right"><div class="edu-grade">82.9%</div><div class="edu-date">Aug 2019 – April 2021</div></div>
+    </div>
+    <div class="edu-card fade-up">
+      <div class="edu-left"><div class="edu-icon">🏫</div><div><div class="edu-inst">Sri Chaitanya E.M School, Visakhapatnam</div><div class="edu-deg">Secondary School Certificate (SSC)</div></div></div>
+      <div class="edu-right"><div class="edu-grade">GPA: 9.7/10</div><div class="edu-date">April 2019</div></div>
+    </div>
+  </div>
+</div>
 
-  <!-- 
-    - custom js link
-  -->
-  <script src="./assets/js/script.js"></script>
+<div class="full-divider"></div>
 
-  <!-- 
-    - ionicon link
-  -->
-  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+<!-- CONTACT -->
+<div class="section" id="contact">
+  <div class="section-eyebrow"><span>Get in touch</span></div>
+  <h2 class="section-title">Contact</h2>
+  <div class="contact-grid">
+    <a href="mailto:adapakagunasekhar04@gmail.com" class="contact-card fade-up">
+      <div class="contact-icon">✉️</div>
+      <div><div class="contact-label">Email</div><div class="contact-value">adapakagunasekhar04@gmail.com</div></div>
+    </a>
+    <a href="https://www.linkedin.com/in/guna-sekhar-adapaka-6903ab23b" target="_blank" class="contact-card fade-up">
+      <div class="contact-icon">💼</div>
+      <div><div class="contact-label">LinkedIn</div><div class="contact-value">guna-sekhar-adapaka</div></div>
+    </a>
+    <a href="https://github.com/AdapakaGunaSekhar004" target="_blank" class="contact-card fade-up">
+      <div class="contact-icon">🐙</div>
+      <div><div class="contact-label">GitHub</div><div class="contact-value">AdapakaGunaSekhar004</div></div>
+    </a>
+    <a href="tel:+919704562623" class="contact-card fade-up">
+      <div class="contact-icon">📞</div>
+      <div><div class="contact-label">Phone</div><div class="contact-value">+91 9704562623</div></div>
+    </a>
+  </div>
+</div>
 
+<footer>© 2025 Adapaka Guna Sekhar · Data Analyst · Visakhapatnam, Andhra Pradesh</footer>
+
+<script>
+  // Custom cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
+  });
+
+  function animRing() {
+    rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+    ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+    requestAnimationFrame(animRing);
+  }
+  animRing();
+
+  document.querySelectorAll('a, button, .cert-header, .project-row').forEach(el => {
+    el.addEventListener('mouseenter', () => { cursor.classList.add('hover'); ring.classList.add('hover'); });
+    el.addEventListener('mouseleave', () => { cursor.classList.remove('hover'); ring.classList.remove('hover'); });
+  });
+
+  // Skills tabs
+  function showTab(name, btn) {
+    document.querySelectorAll('.skills-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + name).classList.add('active');
+    btn.classList.add('active');
+  }
+
+  // Certifications accordion
+  function toggleCert(header) {
+    const item = header.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.cert-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  // Scroll animations
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 100);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
 </body>
-
 </html>
