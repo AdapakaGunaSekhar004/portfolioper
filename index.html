@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Adapaka Guna Sekhar — Data Analyst</title>
+  <title>Adapaka Guna Sekhar — Data Analyst & Engineer</title>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
   <style>
     :root {
@@ -102,6 +102,8 @@
     .project-row:nth-child(3)::before { background: linear-gradient(90deg, rgba(168,85,247,0.05), transparent); }
     .project-row:nth-child(4)::before { background: linear-gradient(90deg, rgba(255,107,107,0.05), transparent); }
     .project-row:nth-child(5)::before { background: linear-gradient(90deg, rgba(0,212,200,0.05), transparent); }
+    .project-row:nth-child(6)::before { background: linear-gradient(90deg, rgba(168,85,247,0.05), transparent); }
+    .project-row:nth-child(7)::before { background: linear-gradient(90deg, rgba(255,107,107,0.05), transparent); }
     .project-row:hover::before { width: 100%; }
     .project-row:first-child { border-top: 1px solid var(--border); }
     .project-row-num { font-family: 'Syne', sans-serif; font-size: 0.75rem; font-weight: 700; color: var(--muted); letter-spacing: 0.1em; position: relative; z-index: 1; }
@@ -193,6 +195,7 @@
   <ul class="nav-links">
     <li><a href="#skills">Skills</a></li>
     <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
     <li><a href="#certifications">Certifications</a></li>
     <li><a href="#education">Education</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -203,19 +206,19 @@
   <div class="orb1"></div>
   <div class="orb2"></div>
   <div class="hero-content">
-    <div class="hero-greeting">Data Analyst & Data Scientist</div>
+    <div class="hero-greeting">Data Analyst & Engineer</div>
     <h1>
       <span class="line1">Adapaka</span><br/>
       <span class="line2">Guna</span><br/>
       <span class="line3">Sekhar</span>
     </h1>
     <div class="hero-sub">
-      <p class="hero-desc">Data Science graduate from Sathyabama University, Chennai. I transform raw data into clear insights using Python, SQL, Power BI, and Machine Learning.</p>
+      <p class="hero-desc">B.Tech Computer Science (Data Science) graduate from Sathyabama Institute of Science and Technology. I build data pipelines, dashboards, and full stack applications using Python, SQL, Power BI, and FastAPI.</p>
       <div class="hero-divider"></div>
       <div class="hero-tags">
         <span class="hero-tag">Python & SQL</span>
-        <span class="hero-tag">Machine Learning</span>
-        <span class="hero-tag">Data Visualization</span>
+        <span class="hero-tag">ETL Pipelines & Dashboards</span>
+        <span class="hero-tag">FastAPI & React</span>
       </div>
     </div>
     <div class="hero-buttons">
@@ -223,9 +226,9 @@
       <a href="https://github.com/AdapakaGunaSekhar004" target="_blank" class="btn-secondary">View GitHub</a>
     </div>
     <div class="hero-stats">
-      <div class="stat"><div class="stat-num">3<span>+</span></div><div class="stat-label">ML Projects</div></div>
+      <div class="stat"><div class="stat-num">8<span>+</span></div><div class="stat-label">Projects Built</div></div>
       <div class="stat"><div class="stat-num">541<span>K</span></div><div class="stat-label">Records Analyzed</div></div>
-      <div class="stat"><div class="stat-num">99.84<span>%</span></div><div class="stat-label">Best Accuracy</div></div>
+      <div class="stat"><div class="stat-num">49<span>K</span></div><div class="stat-label">Pipeline Records</div></div>
       <div class="stat"><div class="stat-num">6</div><div class="stat-label">Certifications</div></div>
     </div>
   </div>
@@ -244,12 +247,16 @@
   <div class="skills-panel active" id="tab-technical">
     <div class="skill-pill">Python</div><div class="skill-pill">SQL</div>
     <div class="skill-pill">Power BI</div><div class="skill-pill">Microsoft Excel</div>
-    <div class="skill-pill">Machine Learning</div>
+    <div class="skill-pill">FastAPI</div><div class="skill-pill">React.js</div>
+    <div class="skill-pill">PostgreSQL</div><div class="skill-pill">Apache Airflow</div>
+    <div class="skill-pill">dbt</div><div class="skill-pill">Docker</div>
+    <div class="skill-pill">Git</div><div class="skill-pill">Machine Learning</div>
   </div>
   <div class="skills-panel" id="tab-libraries">
     <div class="skill-pill">Pandas</div><div class="skill-pill">NumPy</div>
     <div class="skill-pill">Seaborn</div><div class="skill-pill">Matplotlib</div>
-    <div class="skill-pill">Scikit-learn</div><div class="skill-pill">Jupyter Notebook</div>
+    <div class="skill-pill">Scikit-learn</div><div class="skill-pill">Plotly Dash</div>
+    <div class="skill-pill">Pydantic</div><div class="skill-pill">Jupyter Notebook</div>
   </div>
   <div class="skills-panel" id="tab-soft">
     <div class="skill-pill">Teamwork</div><div class="skill-pill">Communication</div>
@@ -266,7 +273,19 @@
     <div class="project-row fade-up">
       <div class="project-row-num">01 —</div>
       <div class="project-row-main">
-        <div class="project-row-tags"><span class="proj-tag red">Python</span><span class="proj-tag red">SQL</span><span class="proj-tag red">Pandas</span><span class="proj-tag red">Power BI</span><span class="proj-tag red">Seaborn</span></div>
+        <div class="project-row-tags"><span class="proj-tag red">Python</span><span class="proj-tag red">PostgreSQL</span><span class="proj-tag red">dbt</span><span class="proj-tag red">Apache Airflow</span><span class="proj-tag red">Metabase</span></div>
+        <div class="project-row-title">Retail Data Warehouse Pipeline</div>
+        <div class="project-row-desc">Built an end-to-end ELT pipeline ingesting 49,005 records into a PostgreSQL star schema. Orchestrated with Apache Airflow, transformed with dbt 1.8.7 (7/7 tests passing), and visualized via 3 Metabase dashboards. Fully containerized with Docker.</div>
+      </div>
+      <div class="project-row-right">
+        <div class="project-metric-badge">49,005<small>records processed</small></div>
+        <a href="https://github.com/AdapakaGunaSekhar004/Retail-Data-Warehouse" target="_blank" class="project-gh-link">GitHub →</a>
+      </div>
+    </div>
+    <div class="project-row fade-up">
+      <div class="project-row-num">02 —</div>
+      <div class="project-row-main">
+        <div class="project-row-tags"><span class="proj-tag teal">Python</span><span class="proj-tag teal">SQL</span><span class="proj-tag teal">Pandas</span><span class="proj-tag teal">Power BI</span><span class="proj-tag teal">Seaborn</span></div>
         <div class="project-row-title">Online Retail Sales Analysis</div>
         <div class="project-row-desc">Wrote 7 SQL queries on 541,909 retail transactions across 37 countries. Identified UK as 85% of revenue, USA with 38% return rate, and segmented 4,372 customers into value tiers. Built an interactive Power BI dashboard to visualize insights.</div>
       </div>
@@ -277,7 +296,32 @@
       </div>
     </div>
     <div class="project-row fade-up">
-      <div class="project-row-num">02 —</div>
+      <div class="project-row-num">03 —</div>
+      <div class="project-row-main">
+        <div class="project-row-tags"><span class="proj-tag purple">React</span><span class="proj-tag purple">FastAPI</span><span class="proj-tag purple">Python</span><span class="proj-tag purple">SQLite</span></div>
+        <div class="project-row-title">Job Tracker AI App</div>
+        <div class="project-row-desc">Built a full stack job tracking application with React frontend and FastAPI backend, integrated with AI for job application management. Features real-time status tracking, application analytics, and a clean dashboard UI. Deployed and live.</div>
+      </div>
+      <div class="project-row-right">
+        <div class="project-metric-badge">Live<small>deployed app</small></div>
+        <a href="https://papaya-pasca-8f2536.netlify.app" target="_blank" class="project-gh-link">Live Demo →</a>
+      </div>
+    </div>
+    <div class="project-row fade-up">
+      <div class="project-row-num">04 —</div>
+      <div class="project-row-main">
+        <div class="project-row-tags"><span class="proj-tag red">Python</span><span class="proj-tag red">FastAPI</span><span class="proj-tag red">SQLite</span><span class="proj-tag red">Pydantic</span></div>
+        <div class="project-row-title">Expense Tracker API</div>
+        <div class="project-row-desc">Built a RESTful API with 5 endpoints supporting full CRUD operations, category filtering, and monthly income and expense summary reporting. Implemented Pydantic data validation and interactive Swagger UI documentation deployed with Uvicorn.</div>
+      </div>
+      <div class="project-row-right">
+        <div class="project-metric-badge">5<small>REST endpoints</small></div>
+        <a href="https://expense-tracker-api-production-b3c5.up.railway.app/docs" target="_blank" class="project-gh-link">Live API →</a>
+        <a href="https://github.com/AdapakaGunaSekhar004/Expense-Tracker-API" target="_blank" class="project-gh-link">GitHub →</a>
+      </div>
+    </div>
+    <div class="project-row fade-up">
+      <div class="project-row-num">05 —</div>
       <div class="project-row-main">
         <div class="project-row-tags"><span class="proj-tag teal">Python</span><span class="proj-tag teal">Pandas</span><span class="proj-tag teal">Scikit-learn</span><span class="proj-tag teal">Seaborn</span><span class="proj-tag teal">NumPy</span></div>
         <div class="project-row-title">Liver Disease Prediction</div>
@@ -289,7 +333,7 @@
       </div>
     </div>
     <div class="project-row fade-up">
-      <div class="project-row-num">03 —</div>
+      <div class="project-row-num">06 —</div>
       <div class="project-row-main">
         <div class="project-row-tags"><span class="proj-tag purple">Python</span><span class="proj-tag purple">Scikit-learn</span><span class="proj-tag purple">Pandas</span><span class="proj-tag purple">Matplotlib</span></div>
         <div class="project-row-title">Employee Attrition Prediction</div>
@@ -301,7 +345,7 @@
       </div>
     </div>
     <div class="project-row fade-up">
-      <div class="project-row-num">04 —</div>
+      <div class="project-row-num">07 —</div>
       <div class="project-row-main">
         <div class="project-row-tags"><span class="proj-tag red">Python</span><span class="proj-tag red">Pandas</span><span class="proj-tag red">Scikit-learn</span><span class="proj-tag red">Streamlit</span></div>
         <div class="project-row-title">Movie Recommendation System</div>
@@ -312,19 +356,6 @@
         <a href="https://github.com/AdapakaGunaSekhar004/Movie-Recommendation-System" target="_blank" class="project-gh-link">GitHub →</a>
       </div>
     </div>
-    <div class="project-row fade-up">
-      <div class="project-row-num">05 —</div>
-      <div class="project-row-main">
-        <div class="project-row-tags"><span class="proj-tag teal">Python</span><span class="proj-tag teal">FastAPI</span><span class="proj-tag teal">SQLite</span><span class="proj-tag teal">Pydantic</span></div>
-        <div class="project-row-title">Expense Tracker API</div>
-        <div class="project-row-desc">Built a RESTful API with 5 endpoints supporting full CRUD operations, category filtering, and monthly income and expense summary reporting. Implemented Pydantic data validation and interactive Swagger UI documentation deployed with Uvicorn.</div>
-      </div>
-      <div class="project-row-right">
-        <div class="project-metric-badge">5<small>REST endpoints</small></div>
-        <a href="https://github.com/AdapakaGunaSekhar004/Expense-Tracker-API" target="_blank" class="project-gh-link">GitHub →</a>
-      </div>
-    </div>
-  </div>
 </div>
 
 <div class="full-divider"></div>
@@ -380,7 +411,37 @@
         <div class="cert-header-left"><div class="cert-dot"></div><div><div class="cert-title">AWS APAC Solutions Architecture Virtual Experience</div><div class="cert-issuer">Forage</div></div></div>
         <div class="cert-header-right"><span class="cert-date-badge">Feb 2025</span><span class="cert-arrow">+</span></div>
       </div>
-      <div class="cert-body"><a href="https://github.com/AdapakaGunaSekhar004" target="_blank" class="cert-link">View Certificate →</a></div>
+      <div class="cert-body"><a href="https://forage-uploads-prod.s3.amazonaws.com/completion-certificates/pmnMSL4QiQ9JCgE3W/kkE9HyeNcw6rwCRGw_pmnMSL4QiQ9JCgE3W_4iqY6aBcKRhuPzJ3Y_1739780585642_completion_certificate.pdf" target="_blank" class="cert-link">View Certificate →</a></div>
+    </div>
+  </div>
+</div>
+
+<div class="full-divider"></div>
+
+<div class="section" id="experience">
+  <div class="section-eyebrow"><span>Work Experience</span></div>
+  <h2 class="section-title">Experience</h2>
+  <div class="edu-cards">
+    <div class="edu-card fade-up" style="flex-direction: column; align-items: flex-start; gap: 1rem;">
+      <div style="display: flex; justify-content: space-between; width: 100%; align-items: center;">
+        <div class="edu-left">
+          <div class="edu-icon">💼</div>
+          <div>
+            <div class="edu-inst">Vishala Creations — Authorised Franchisee of DTDC Courier & Cargo Ltd.</div>
+            <div class="edu-deg">MIS Analyst Intern · Visakhapatnam, Andhra Pradesh</div>
+          </div>
+        </div>
+        <div class="edu-right">
+          <div class="edu-grade" style="color: var(--teal);">6 Months</div>
+          <div class="edu-date">Sep 2025 – Feb 2026</div>
+        </div>
+      </div>
+      <ul style="list-style: none; padding-left: 3.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+        <li style="color: var(--muted); font-size: 0.85rem; line-height: 1.6; position: relative;"><span style="color: var(--coral); position: absolute; left: -1.2rem;">→</span>Maintained daily shipment booking records and delivery status tracking using Microsoft Excel across 500+ monthly transactions.</li>
+        <li style="color: var(--muted); font-size: 0.85rem; line-height: 1.6; position: relative;"><span style="color: var(--coral); position: absolute; left: -1.2rem;">→</span>Prepared weekly MIS reports summarizing booking volumes, delivery success rates, and pending shipments for branch performance monitoring.</li>
+        <li style="color: var(--muted); font-size: 0.85rem; line-height: 1.6; position: relative;"><span style="color: var(--coral); position: absolute; left: -1.2rem;">→</span>Performed data entry, document verification, and sorting of consignment records to ensure data accuracy.</li>
+        <li style="color: var(--muted); font-size: 0.85rem; line-height: 1.6; position: relative;"><span style="color: var(--coral); position: absolute; left: -1.2rem;">→</span>Handled customer interaction and addressed shipment status queries.</li>
+      </ul>
     </div>
   </div>
 </div>
@@ -392,7 +453,7 @@
   <h2 class="section-title">Education</h2>
   <div class="edu-cards">
     <div class="edu-card fade-up">
-      <div class="edu-left"><div class="edu-icon">🎓</div><div><div class="edu-inst">Sathyabama University, Chennai</div><div class="edu-deg">B.E. Computer Science & Engineering (Data Science)</div></div></div>
+      <div class="edu-left"><div class="edu-icon">🎓</div><div><div class="edu-inst">Sathyabama Institute of Science and Technology, Chennai</div><div class="edu-deg">B.Tech Computer Science & Engineering (Data Science)</div></div></div>
       <div class="edu-right"><div class="edu-grade">GPA: 7.80/10</div><div class="edu-date">Sept 2021 – June 2025</div></div>
     </div>
     <div class="edu-card fade-up">
@@ -431,7 +492,7 @@
   </div>
 </div>
 
-<footer>© 2025 Adapaka Guna Sekhar · Data Analyst · Visakhapatnam, Andhra Pradesh</footer>
+<footer>© 2025 Adapaka Guna Sekhar · Data Analyst & Engineer · Visakhapatnam, Andhra Pradesh</footer>
 
 <script>
   const cursor = document.getElementById('cursor');
